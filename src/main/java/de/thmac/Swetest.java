@@ -533,8 +533,11 @@ public class Swetest implements java.io.Serializable {
 					s1 = s1.substring(0, SMath.min(s1.length(), 30));
 					if (s1.indexOf(':') >= 0) {
 						s1 = s1.substring(0, s1.indexOf(':')) + "." + s1.substring(s1.indexOf(':') + 1);
+						//14.30:00 ??
+
 						if (s1.indexOf(':') >= 0) {
 							s1 = s1.substring(0, s1.indexOf(':')) + s1.substring(s1.indexOf(':') + 1);
+							//14.3000
 						}
 					}
 
@@ -552,9 +555,15 @@ public class Swetest implements java.io.Serializable {
 					// Allowing for negative times: this is different from the C
 					// code!
 					t = (thour % 1.0) * 100 + (thour < 0 ? -1e-6 : 1e-6);
+					// .3000 * 100 + 1e-6
+					// 30 + 1e-6
 					j = (int) t;
+					// 30 (my minutes with some float epsilon shit)
 					t = (t % 1.0) * 100 + 1e-6;
+					// 30 * 100 + 1e-6
+					// 3000
 					thour = (int) thour + j / 60.0 + t / 3600.0 + frac / 3600.0;
+					// time of day as fraction of hours... damn that was the most round about way to get it.
 				}
 			} else if (argv[i].startsWith("-head")) {
 				with_header = false;
