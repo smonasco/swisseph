@@ -23,3 +23,12 @@ And then add dependency:
 			<version>-SNAPSHOT</version>
 		</dependency>
 ```
+
+#run it
+
+```
+git clone https://github.com/smonasco/swisseph.git
+cd swisseph
+mvn install
+java -cp target/swisseph-2.01.00-01.jar de.thmac.Swetest
+```
